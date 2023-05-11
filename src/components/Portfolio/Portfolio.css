@@ -56,6 +56,7 @@
     color: #000;
     display: inline-block;
     transition: all .2s ease-in;
+    width: 100%;
 }
 
 .portfolio__link:hover {

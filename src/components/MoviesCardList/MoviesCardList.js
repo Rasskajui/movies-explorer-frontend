@@ -4,7 +4,7 @@ import photo from '../../images/movie-preview-pic.jpg'
 
 function MoviesCardList({ page }) {
     return (
-        <section className="movies-list">
+        <section className="movies-list" aria-label="Список фильмов">
             <ul className="movies-list__list">
                 <MoviesCard 
                     name="Название киношки очень длинное, которое потом сокращать Название киношки очень длинное, которое потом сокращать "
@@ -13,6 +13,7 @@ function MoviesCardList({ page }) {
                 />
                 <MoviesCard 
                     name="Название киношки очень длинное, которое потом сокращать"
+                    link={ photo }
                     length="1ч42м"
                 />
                 <MoviesCard 
