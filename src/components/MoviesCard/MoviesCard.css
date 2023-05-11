@@ -1,0 +1,95 @@
+.movies-list__movie {
+    height: 228px;
+    display: flex;
+    flex-direction: column;
+}
+
+.movies-list__image {
+    width: 100%;
+    height: 151px;
+    object-fit: cover;
+    background-color: #e8e8e8;
+}
+
+.movies-list__line {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+}
+
+.movies-list__name {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.23;
+    margin: 0;
+    max-width: 87%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movies-list__save-btn {
+    border: none;
+    padding: 0;
+    background: url(../../images/icons/heart.svg) no-repeat center;
+    background-color: #f9f9f9;
+    border-radius: 50%;
+    background-size: 10px 8px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: all .1s ease-in;
+}
+
+.movies-list__save-btn:hover {
+    background-color: #e8e8e8;
+}
+
+.movies-list__save-btn_active {
+    background-image: url(../../images/icons/heart-active.svg);
+}
+
+.movies-list__save-btn_active:hover {
+    background-image: url(../../images/icons/cross.svg);
+    background-color: #f9f9f9;
+}
+
+
+.movies-list__length {
+    font-size: 11px;
+    line-height: 1.18;
+    color: #A0A0A0;
+    position: relative;
+    margin: 0;
+    margin-top: auto;
+}
+
+.movies-list__length::before {
+    content: "";
+    background-color: #e8e8e8;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: -6px;
+    left: 0;
+}
+
+@media screen and (max-width: 999px) {
+    .movies-list__movie {
+        height: 270px;
+    }
+    .movies-list__image {
+        height: 190px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .movies-list__movie {
+        height: 245px;
+    }
+    .movies-list__image {
+        height: 168px;
+    }
+}
