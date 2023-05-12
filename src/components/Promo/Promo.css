@@ -1,0 +1,38 @@
+.promo {
+    min-height: 100vh;
+    background: #f3c1f8 url(../../images/icons/background-icon.svg) no-repeat center;
+    background-size: 320px 320px;
+    position: relative;
+}
+
+.promo__text {
+    margin: 0;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.16;
+    text-align: center;
+    letter-spacing: -0.04em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 730px;
+}
+
+@media screen and (max-width: 767px) {
+    .promo__text {
+        width: 550px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .promo {
+        background-size: 248px 248px;
+    }
+
+    .promo__text {
+        width: 300px;
+        font-size: 31px;
+        line-height: 1.26;
+    }
+}

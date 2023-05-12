@@ -1,0 +1,63 @@
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.not-found__message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.not-found__title {
+    margin: 0;
+    font-weight: 400;
+    font-size: 140px;
+    line-height: 1.2;
+    text-align: center;
+}
+.not-found__subtitle {
+    font-size: 16px;
+    line-height: 1.1875;
+    text-align: center;
+    margin: 5px 0 0;
+}
+
+.not-found__link {
+    font-size: 14px;
+    line-height: 1.21;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+    bottom: 60px;
+    margin-top: 20px;
+}
+
+.not-found__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+@media screen and (max-width: 575px) {
+    .not-found__title {
+        font-size: 80px;
+        line-height: 1.2125;
+    }
+
+    .not-found__subtitle {
+        font-size: 12px;
+        line-height: 1.25;
+        margin-top: 10px;
+    }
+
+    .not-found__link {
+        bottom: 30px;
+        font-size: 12px;
+        line-height: 1.25;
+    }
+}
