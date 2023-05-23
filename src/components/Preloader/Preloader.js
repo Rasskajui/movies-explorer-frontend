@@ -1,8 +1,13 @@
 import './Preloader.css';
 
-function Preloader() {
+function Preloader(props) {
     return (
-        <div className="preloader"></div>
+        <div className='preloader'>
+            {props.text ? 
+                <p className="preloader__text">{props.text}</p>
+                : <div className="preloader__load"></div>
+            }
+        </div>
     );
 }
 

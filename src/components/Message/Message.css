@@ -1,0 +1,36 @@
+.message {
+    padding: 20px 31px;
+    background-color: #FF004D;
+    border-radius: 6px;
+    max-width: 320px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all .8s ease-in-out;
+    z-index: 3;
+}
+
+.message_hidden {
+    top: -100%;
+}
+
+.message_success {
+    background-color: #2BE080;
+}
+
+.message__text {
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+}
+
+.message__text_accent {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 575px) {
+    .message__text {
+        font-size: 11px;
+    }
+}
