@@ -10,7 +10,7 @@ function Profile(props) {
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    const [formValue, setFormValue] = useState({ email: '', name: '' });
+    const [formValue, setFormValue] = useState({ email: currentUser.email, name: currentUser.name });
     const [errors, setErrors] = useState({email: '', name: ''});
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
     const [isMessageHidden, setIsMessageHidden] = useState(true);
