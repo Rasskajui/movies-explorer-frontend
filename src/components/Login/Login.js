@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Message from "../Message/Message";
+import { emailRegex } from "../../utils/constants";
 
 function Login(props) {
     const [formValue, setFormValue] = useState({ email: '', password: '' });
@@ -68,6 +69,7 @@ function Login(props) {
                         className={`form__input ${errors.email ? 'form__input_error' : ''}`} 
                         placeholder="pochta@yandex.ru" 
                         required
+                        pattern={emailRegex}
                         value={formValue.email}
                         onChange={handleChange}
                         disabled={isSubmitting}

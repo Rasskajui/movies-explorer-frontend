@@ -4,6 +4,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import {useContext, useState} from 'react';
 import Popup from '../Popup/Popup';
 import Message from '../Message/Message';
+import { emailRegex } from '../../utils/constants';
 
 function Profile(props) {
     const currentUser = useContext(CurrentUserContext);
@@ -99,6 +100,7 @@ function Profile(props) {
                                     className={`form__input ${errors.email ? 'form__input_error' : ''}`} 
                                     placeholder="pochta@yandex.ru" 
                                     required
+                                    pattern={emailRegex}
                                     value={formValue.email}
                                     onChange={handleChange}
                                     disabled={isSubmitting}
