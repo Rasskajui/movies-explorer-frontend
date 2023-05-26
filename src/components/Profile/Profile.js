@@ -73,6 +73,12 @@ function Profile(props) {
         })
     }
 
+    const checkIfSubmitDisabled = () => {
+        return isSubmitDisabled 
+        || isSubmitting 
+        || (currentUser.name === formValue.name && currentUser.email === formValue.email);
+    }
+
     return (
         <>
             <Header isAuth={true}/>
@@ -111,7 +117,7 @@ function Profile(props) {
                                     disabled={isSubmitting}
                                 />
                                 <span className="form__error form__error_input_password profile__last-input-error">{errors.name}</span>
-                                <button type="submit" className={`form__submit-btn ${isSubmitDisabled || isSubmitting ? 'form__submit-btn_disabled' : ''}`} disabled={isSubmitDisabled || isSubmitting}>Сохранить</button>
+                                <button type="submit" className={`form__submit-btn ${checkIfSubmitDisabled() ? 'form__submit-btn_disabled' : ''}`} disabled={checkIfSubmitDisabled()}>Сохранить</button>
                             </form>
                         </section>
                     }
