@@ -58,7 +58,12 @@ function MoviesCard(props) {
             </a>
             <div className="movies-list__line">
                 <p className="movies-list__name">{props.name}</p>
-                <button type="button" onClick={isSaved ? deleteMovie : saveMovie} aria-label="Сохранить фильм" className={`movies-list__save-btn ${isSaved ? 'movies-list__save-btn_active' : ''}`}></button>
+                <button 
+                    type="button" 
+                    onClick={isSaved ? deleteMovie : saveMovie} 
+                    aria-label="Сохранить фильм" 
+                    className={`movies-list__save-btn ${props.page === 'movies' ? '' : 'movies-list__save-btn_page_saved'} ${isSaved ? 'movies-list__save-btn_active' : ''}`}
+                ></button>
             </div>
             <p className="movies-list__length">{formatLength(props.length)}</p>
         </li>

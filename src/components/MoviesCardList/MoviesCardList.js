@@ -62,7 +62,8 @@ function MoviesCardList(props) {
                                             onDeleteMovie = { props.onDeleteMovie }
                                             onSaveMovie = { props.onSaveMovie }
                                             isSaved = { checkIfSaved(card.id) }
-                                        _id = { checkIfSaved(card.id) ? findMovieId(card.id) : '' }
+                                            _id = { checkIfSaved(card.id) ? findMovieId(card.id) : '' }
+                                            page = "movies"
                                         />     
                                     )
                                 )
@@ -84,6 +85,7 @@ function MoviesCardList(props) {
                                             nameEN = { card.nameEN } 
                                             isSaved = { true }
                                             onDeleteMovie = { props.onDeleteMovie }
+                                            page = "saved-movies"
                                         />     
                                     )
                                 )

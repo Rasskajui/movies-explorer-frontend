@@ -64,6 +64,16 @@
     background-color: #f9f9f9;
 }
 
+.movies-list__save-btn_page_saved {
+    background-image: url(../../images/icons/cross.svg);
+    background-color: #f9f9f9;
+    background-size: 9px 9px;
+    transition: all .1s ease-in;
+}
+
+.movies-list__save-btn_page_saved:hover {
+    background-color: #e8e8e8;
+}
 
 .movies-list__length {
     font-size: 11px;
