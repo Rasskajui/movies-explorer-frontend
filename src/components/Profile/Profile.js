@@ -16,6 +16,7 @@ function Profile(props) {
     const [isMessageHidden, setIsMessageHidden] = useState(true);
     const [message, setMessage] = useState('');
     const [isSuccess, setIsSuccess] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const closePopup = () => {
         setIsPopupOpen(false);
@@ -51,6 +52,7 @@ function Profile(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsSubmitting(true);
         props.onUpdateUserInfo(formValue)
         .then(() => {
             setIsPopupOpen(false);
@@ -60,12 +62,14 @@ function Profile(props) {
             setMessage('Данные успешно изменены');
             setIsMessageHidden(false);
             setTimeout(() => setIsMessageHidden(true), 5000);
+            setIsSubmitting(false);
         })
         .catch((err) => {
             setIsSuccess(false);
             setMessage(err);
             setIsMessageHidden(false);
             setTimeout(() => setIsMessageHidden(true), 5000);
+            setIsSubmitting(false);
         })
     }
 
@@ -91,9 +95,10 @@ function Profile(props) {
                                     required
                                     value={formValue.email}
                                     onChange={handleChange}
+                                    disabled={isSubmitting}
                                 />
                                 <span className="form__error form__error_input_email">{errors.email}</span>
-                                <label htmlFor="name" className="form__label">Пароль</label>
+                                <label htmlFor="name" className="form__label">Имя</label>
                                 <input 
                                     type="name" 
                                     id="name" 
@@ -103,9 +108,10 @@ function Profile(props) {
                                     required
                                     value={formValue.name}
                                     onChange={handleChange}
+                                    disabled={isSubmitting}
                                 />
                                 <span className="form__error form__error_input_password profile__last-input-error">{errors.name}</span>
-                                <button type="submit" className={`form__submit-btn ${isSubmitDisabled ? 'form__submit-btn_disabled' : ''}`} disabled={isSubmitDisabled}>Сохранить</button>
+                                <button type="submit" className={`form__submit-btn ${isSubmitDisabled || isSubmitting ? 'form__submit-btn_disabled' : ''}`} disabled={isSubmitDisabled || isSubmitting}>Сохранить</button>
                             </form>
                         </section>
                     }

@@ -10,6 +10,7 @@ function Register(props) {
     const [isMessageHidden, setIsMessageHidden] = useState(true);
     const [message, setMessage] = useState('Что-то пошло не так...');
     const [isSuccess, setIsSuccess] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const checkErrors = (input) => {
         if (!input.validity.valid) {
@@ -41,12 +42,14 @@ function Register(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsSubmitting(true);
         mainApi.signUp(formValue)
             .then(() => {
                 setIsSuccess(true);
                 setMessage('Вы успешно зарегистрировались');
                 setIsMessageHidden(false)
                 setTimeout(() => setIsMessageHidden(true), 5000);
+                setIsSubmitting(false);
             })
             .then(() => props.onLogin(formValue).catch((err) => {return Promise.reject(`Ошибка ${err.status}`)}))
             .catch((err) => {
@@ -54,6 +57,7 @@ function Register(props) {
                 setMessage(err);
                 setIsMessageHidden(false)
                 setTimeout(() => setIsMessageHidden(true), 5000);
+                setIsSubmitting(false);
             })
     }
 
@@ -77,7 +81,7 @@ function Register(props) {
                         required
                         value={formValue.name}
                         onChange={handleChange}
-                        disabled={props.isFetching}
+                        disabled={isSubmitting}
                     />
                     <span className="form__error">{errors.name}</span>
                     <label htmlFor="email" className="form__label">E-mail</label>
@@ -90,7 +94,7 @@ function Register(props) {
                         required
                         value={formValue.email}
                         onChange={handleChange}
-                        disabled={props.isFetching}
+                        disabled={isSubmitting}
                     />
                     <span className="form__error">{errors.email}</span>
                     <label htmlFor="password" className="form__label">Пароль</label>
@@ -103,13 +107,13 @@ function Register(props) {
                         required
                         value={formValue.password}
                         onChange={handleChange}
-                        disabled={props.isFetching}
+                        disabled={isSubmitting}
                     />
                     <span className="form__error">{errors.password}</span>
                     <button 
                         type="submit" 
-                        className={`form__submit-btn ${isSubmitDisabled || props.isFetching ? 'form__submit-btn_disabled' : ''}`} 
-                        disabled={isSubmitDisabled || props.isFetching}
+                        className={`form__submit-btn ${isSubmitDisabled || isSubmitting ? 'form__submit-btn_disabled' : ''}`} 
+                        disabled={isSubmitDisabled || isSubmitting}
                     >    
                             Зарегистрироваться
                     </button>

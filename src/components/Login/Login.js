@@ -8,6 +8,7 @@ function Login(props) {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
     const [isMessageHidden, setIsMessageHidden] = useState(true);
     const [message, setMessage] = useState('Что-то пошло не так...');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const checkErrors = (input) => {
         if (!input.validity.valid) {
@@ -39,11 +40,16 @@ function Login(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsSubmitting(true);
         props.onLogin(formValue)
+        .then(() => {
+            setIsSubmitting(false);
+        })
         .catch((err) => {
             setMessage(err);
             setIsMessageHidden(false);
             setTimeout(() => setIsMessageHidden(true), 5000);
+            setIsSubmitting(false);
         })
     }
 
@@ -64,7 +70,7 @@ function Login(props) {
                         required
                         value={formValue.email}
                         onChange={handleChange}
-                        disabled={props.isFetching}
+                        disabled={isSubmitting}
                     />
                     <span className="form__error form__error_input_email">{errors.email}</span>
                     <label htmlFor="password" className="form__label">Пароль</label>
@@ -77,13 +83,13 @@ function Login(props) {
                         required
                         value={formValue.password}
                         onChange={handleChange}
-                        disabled={props.isFetching}
+                        disabled={isSubmitting}
                     />
                     <span className="form__error form__error_input_password">{errors.password}</span>
                     <button 
                         type="submit" 
-                        className={`form__submit-btn ${isSubmitDisabled || props.isFetching ? 'form__submit-btn_disabled' : ''}`} 
-                        disabled={isSubmitDisabled || props.isFetching}
+                        className={`form__submit-btn ${isSubmitDisabled || isSubmitting ? 'form__submit-btn_disabled' : ''}`} 
+                        disabled={isSubmitDisabled || isSubmitting}
                     >
                         Войти
                     </button>
