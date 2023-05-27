@@ -30,7 +30,6 @@ function App() {
         .then((res) => {
             if (res) {
                 setLoggedIn(true);
-                navigate('/movies', {replace: true});
             }
         })
         .catch((err) => {console.log(err)})
@@ -142,7 +141,7 @@ function App() {
         <Route 
           path="/movies" 
           element={ 
-            loggedIn 
+            localStorage.getItem('token') 
             ? <CurrentUserContext.Provider value={currentUser}>
                 <Movies 
                   movies={movies}
@@ -158,7 +157,7 @@ function App() {
         <Route 
           path="/saved-movies" 
           element={ 
-            loggedIn 
+            localStorage.getItem('token') 
             ? <CurrentUserContext.Provider value={currentUser}>
                 <SavedMovies 
                   savedMovies={savedMovies}
@@ -171,7 +170,7 @@ function App() {
         <Route 
           path="/profile" 
           element={ 
-            loggedIn 
+            localStorage.getItem('token') 
             ? <CurrentUserContext.Provider value={currentUser}>
                 <Profile 
                   handleExit={handleExit} 
@@ -181,8 +180,16 @@ function App() {
             : <Navigate to="/" replace/> 
           }
         />
-        <Route path="/register" element={<Register onLogin={handleLogin} isFetching={isFetching}/>}/>
-        <Route path="/login" element={<Login onLogin={handleLogin} isFetching={isFetching}/>} />
+        <Route path="/register" element={
+          localStorage.getItem('token')
+          ? <Navigate to="/" replace />
+          : <Register onLogin={handleLogin} isFetching={isFetching}/>
+        }/>
+        <Route path="/login" element={
+          localStorage.getItem('token')
+          ? <Navigate to="/" replace />
+          : <Login onLogin={handleLogin} isFetching={isFetching}/>
+        } />
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </div>
