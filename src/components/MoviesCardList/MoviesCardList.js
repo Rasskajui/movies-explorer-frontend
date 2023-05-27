@@ -72,7 +72,11 @@ function MoviesCardList(props) {
             {props.isFetching ? 
                 <Preloader /> :
                 <>
-                    {props.foundMovies.length === 0 && <Preloader text={"Ничего не найдено"}/>}
+                    {props.foundMovies.length === 0 && (
+                        props.searchHappened ? 
+                        <Preloader text={"Ничего не найдено"}/>
+                        : null
+                    )}
                     <ul className="movies-list__list">
                         {props.page === "movies" && props.foundMovies.slice(0, loadedMovies).map((card) => (
                                         <MoviesCard 

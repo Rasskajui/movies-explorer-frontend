@@ -11,6 +11,7 @@ function Movies(props) {
     const [isChecked, setIsChecked] = useState(localStorage.getItem('isShort') === 'true');
     const [movieRequest, setMovieRequest] = useState(localStorage.getItem('movieRequest') || '');
     const [foundMovies, setFoundMovies] = useState(localStorage.getItem('foundMovies') ? JSON.parse(localStorage.getItem('foundMovies')) : []);
+    const [searchHappened, setSearchHappened] = useState(false);
 
     function findMovies(isChecked) {
         const movies = props.movies.filter((movie) => {
@@ -23,6 +24,7 @@ function Movies(props) {
         localStorage.setItem('foundMovies', JSON.stringify(movies));
         localStorage.setItem('movieRequest', movieRequest);
         localStorage.setItem('isShort', isChecked.toString());
+        setSearchHappened(true);
     }
 
     return (
@@ -44,6 +46,7 @@ function Movies(props) {
                     onSaveMovie={props.onSaveMovie}
                     foundMovies = {foundMovies}
                     isFetching={props.isFetching}
+                    searchHappened={searchHappened}
                 />
             </main>
             <Footer />

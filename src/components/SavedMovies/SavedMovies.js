@@ -11,6 +11,7 @@ function SavedMovies(props) {
     const [isChecked, setIsChecked] = useState(false);
     const [movieRequest, setMovieRequest] = useState('');
     const [foundMovies, setFoundMovies] = useState(props.savedMovies);
+    const [searchHappened, setSearchHappened] = useState(false);
 
     function findMovies(isChecked) {
         setFoundMovies(props.savedMovies.filter((movie) => {
@@ -19,6 +20,7 @@ function SavedMovies(props) {
             isNameIncluded
             : (movie.duration > shortMovieLength) && isNameIncluded
         }))
+        setSearchHappened(true);
     }
 
     function onDeleteMovie(movieId) {
@@ -44,6 +46,7 @@ function SavedMovies(props) {
                     savedMovies={props.savedMovies} 
                     onDeleteMovie={onDeleteMovie}
                     foundMovies = {foundMovies}
+                    searchHappened={searchHappened}
                 />
             </main>
             <Footer />
