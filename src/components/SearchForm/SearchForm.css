@@ -38,6 +38,23 @@
     border-color: #A0A0A0;
 }
 
+.search__input_error {
+    border-color: #FF4062;
+}
+
+.search__input_error:focus {
+    border-color: #FF4062;
+}
+
+.search__error {
+    height: 0;
+    display: block;
+    line-height: 24px;
+    color: #FF4062;
+    margin-left: 60px;
+    font-size: 14px;
+}
+
 .search__btn {
     position: absolute;
     right: 0;
@@ -59,6 +76,10 @@
     .search {
         padding: 86px 30px 62px;
     }
+
+    .search__error {
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -74,5 +95,9 @@
         text-align: left;
         font-size: 18px;
         line-height: 1.22;
+    }
+
+    .search__error {
+        text-align: center;
     }
 }

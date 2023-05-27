@@ -7,6 +7,16 @@
     align-items: center;
 }
 
+.profile__form {
+    margin: 0;
+    width: 500px;
+}
+
+.profile__form-title {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
 .profile__title {
     font-weight: 500;
     font-size: 24px;
@@ -97,6 +107,10 @@
     .profile__buttons {
         margin-top: 210px;
     }
+
+    .profile__form {
+        max-width: 300px;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -118,5 +132,9 @@
     .profile__btn {
         font-size: 12px;
         line-height: 1.25;
+    }
+
+    .profile__form {
+        max-width: 250px;
     }
 }
