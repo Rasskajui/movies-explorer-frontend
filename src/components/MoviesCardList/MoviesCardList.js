@@ -2,19 +2,48 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useEffect, useState } from 'react';
 import Preloader from '../Preloader/Preloader';
+import { 
+    LARGE_WINDOW_SIZE, 
+    MEDIUM_WINDOW_SIZE, 
+    SMALL_WINDOW_SIZE,
+    cardsInRowQuantity,
+    defaultRowsOfCardsQuantity,
+} from '../../utils/constants';
 
 function MoviesCardList(props) {
 
     const [cardsExposition, setCardsExposition] = useState({
-        cardsInRow: window.innerWidth >= 1280 ? 4 : window.innerWidth >= 999 ? 3 : window.innerWidth >= 575 ? 2 : 1,
-        defaultRowsQuantity: window.innerWidth >= 1280 ? 3 : window.innerWidth >= 575 ? 4 : 5
+        cardsInRow: window.innerWidth >= LARGE_WINDOW_SIZE 
+        ? cardsInRowQuantity.lg 
+        : window.innerWidth >= MEDIUM_WINDOW_SIZE 
+        ? cardsInRowQuantity.md 
+        : window.innerWidth >= SMALL_WINDOW_SIZE 
+        ? cardsInRowQuantity.s 
+        : cardsInRowQuantity.xs,
+
+        defaultRowsQuantity: window.innerWidth >= LARGE_WINDOW_SIZE 
+        ? defaultRowsOfCardsQuantity.lg 
+        : window.innerWidth >= SMALL_WINDOW_SIZE 
+        ? defaultRowsOfCardsQuantity.s 
+        : defaultRowsOfCardsQuantity.xs
     });
 
     useEffect(() => {
         const handleResize = (evt) => {
             setCardsExposition({
-                cardsInRow: evt.target.innerWidth >= 1280 ? 4 : window.innerWidth >= 999 ? 3 : window.innerWidth >= 575 ? 2 : 1,
-                defaultRowsQuantity: evt.target.innerWidth >= 1280 ? 3 : evt.target.innerWidth >= 575 ? 4 : 5
+                cardsInRow: evt.target.innerWidth >= LARGE_WINDOW_SIZE 
+                ? cardsInRowQuantity.lg 
+                : window.innerWidth >= MEDIUM_WINDOW_SIZE 
+                ? cardsInRowQuantity.md 
+                : window.innerWidth >= SMALL_WINDOW_SIZE 
+                ? cardsInRowQuantity.s 
+                : cardsInRowQuantity.xs,
+
+                defaultRowsQuantity: evt.target.innerWidth >= LARGE_WINDOW_SIZE 
+                ? defaultRowsOfCardsQuantity.lg 
+                : evt.target.innerWidth >= SMALL_WINDOW_SIZE 
+                ? defaultRowsOfCardsQuantity.s 
+                : defaultRowsOfCardsQuantity.xs
             });
             setLoadedMovies(loadedMovies - (loadedMovies % cardsExposition.cardsInRow));
         }

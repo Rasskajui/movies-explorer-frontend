@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import { useState } from 'react';
+import { shortMovieLength } from '../../utils/constants';
 
 function SavedMovies(props) {
 
@@ -16,7 +17,7 @@ function SavedMovies(props) {
             const isNameIncluded =  movie.nameRU.toLowerCase().includes(movieRequest.toLowerCase()) || movie.nameEN.toLowerCase().includes(movieRequest.toLowerCase());
             return  isChecked ? 
             isNameIncluded
-            : (movie.duration > 40) && isNameIncluded
+            : (movie.duration > shortMovieLength) && isNameIncluded
         }))
     }
 
